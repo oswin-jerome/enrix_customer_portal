@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1092196399464",
+    "firebase_url": "https://my-awesome-projects-web.firebaseio.com",
+    "project_id": "my-awesome-projects-web",
+    "storage_bucket": "my-awesome-projects-web.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092196399464:android:4257d44d9f5701e320fedd",
+        "android_client_info": {
+          "package_name": "com.example.bidforabun_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsAExoDuKCnLIAfPT8NMZgYarQwaswCW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092196399464:android:328dd627b4e0876e20fedd",
+        "android_client_info": {
+          "package_name": "in.dynamicdreamers.enrix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsAExoDuKCnLIAfPT8NMZgYarQwaswCW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092196399464:android:56b07cfbc7cc8b9120fedd",
+        "android_client_info": {
+          "package_name": "in.enrix.customer_portal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsAExoDuKCnLIAfPT8NMZgYarQwaswCW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
