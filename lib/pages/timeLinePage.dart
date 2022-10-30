@@ -126,7 +126,7 @@ class _TimeLinePageState extends State<TimeLinePage>
         ],
       ),
       floatingActionButton: CustomFab(
-          icon: Icon(Icons.filter_list),
+          icon: Icon(Icons.filter_list, color: Colors.white),
           label: "Filter",
           onPress: () {
             showModalBottomSheet(
@@ -170,6 +170,7 @@ class _TimeLinePageState extends State<TimeLinePage>
                                         title:
                                             Text(_actTypes[i]["activity_type"]),
                                         trailing: Checkbox(
+                                          activeColor: accent,
                                           onChanged: (bool? value) {
                                             setState(() {
                                               if (value ?? false) {
@@ -197,6 +198,8 @@ class _TimeLinePageState extends State<TimeLinePage>
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton(
+                                style:
+                                    ElevatedButton.styleFrom(primary: accent),
                                 onPressed: () {
                                   _logGroup = [];
                                   page = 1;

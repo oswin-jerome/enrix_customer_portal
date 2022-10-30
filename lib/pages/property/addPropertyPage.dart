@@ -697,6 +697,8 @@ class _AddPropertyPageState extends State<AddPropertyPage> {
                 title: "Property Intake Form",
                 subtitle: "Authorization letter",
                 content: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.76,
                   child: auth_letter != null
                       ? SfPdfViewer.file(auth_letter!)
                       : Container(),

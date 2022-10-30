@@ -37,11 +37,11 @@ class _PropertyListPageState extends State<PropertyListPage> {
 
   // Intro
   final addMenu = GlobalKey();
-  List<TutorialItens> itens = [];
+  List<TutorialItem> itens = [];
   @override
   void initState() {
     itens.addAll({
-      TutorialItens(
+      TutorialItem(
         globalKey: addMenu,
         touchScreen: true,
         top: 200,
@@ -119,7 +119,10 @@ class _PropertyListPageState extends State<PropertyListPage> {
           ],
         ),
         floatingActionButton: CustomFab(
-          icon: Icon(Icons.add),
+          icon: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
           label: "New",
           onPress: () async {
             await navigateWithFade(

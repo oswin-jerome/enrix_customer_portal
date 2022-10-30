@@ -521,8 +521,8 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
   double _maxExtend = 200;
   double _maxTop = 50;
   double _minTop = 5;
-  double _maxTopWidth = 100;
-  double _minTopWidth = 50;
+  double _maxTopWidth = 60;
+  double _minTopWidth = 30;
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -551,6 +551,7 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
               child: Image.asset(
                 "assets/images/splash_top.png",
                 fit: BoxFit.cover,
+                // color: accent.withOpacity(opacity),
               ),
             ),
           ),
@@ -604,7 +605,7 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
             left: (((MediaQuery.of(context).size.width / 2) -
                         (_maxTopWidth / 2)) *
                     (1 - percent))
-                .clamp(40, (MediaQuery.of(context).size.width / 2))
+                .clamp(50, (MediaQuery.of(context).size.width / 2))
                 .toDouble(),
             top: (_maxTop * (1 - percent)).clamp(_minTop, _maxTop),
             child: Container(
@@ -622,19 +623,19 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
           ),
           Positioned(
             left: (((MediaQuery.of(context).size.width / 2) -
-                        (_maxTopWidth / 2)) *
+                        ((_maxTopWidth - 6) / 2)) *
                     (1 - percent))
                 .clamp(85, (MediaQuery.of(context).size.width / 2))
                 .toDouble(),
             top: ((_maxTop + 80) * (1 - percent))
                 .clamp(_minTop + 15, _maxTop + 120),
-            child: Container(
+            child: Center(
               // color: Colors.red,
               // width: percent > 0.5 ? _minTopWidth : _minTopWidth,
               child: Image.asset(
                 "assets/logo_down.png",
-                width: (_maxTopWidth * (1 - percent))
-                    .clamp(_minTopWidth, _maxTopWidth),
+                // width: 0,
+                width: ((_maxTopWidth) * (1 - percent)).clamp(50, _maxTopWidth),
               ),
             ),
           ),

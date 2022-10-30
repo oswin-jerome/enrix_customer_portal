@@ -10,7 +10,7 @@ class ApiHelper {
   ApiHelper() {
     var storeBox = Hive.box("store");
 
-    String _token = storeBox.get("token");
+    String? _token = storeBox.get("token");
     dio = new Dio();
     dio.options.baseUrl = Base.baseUrl;
     // dio.interceptors.add(
@@ -42,6 +42,8 @@ class ApiHelper {
         Get.off(LoginPage());
         return;
       }
+
+      print(err);
 
       // if (err.response.statusCode >= 500) {
       //   print("Server errors");

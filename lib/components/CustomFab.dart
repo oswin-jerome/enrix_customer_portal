@@ -1,4 +1,5 @@
 import 'package:customer_portal/Controllers/FabController.dart';
+import 'package:customer_portal/utils/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +63,10 @@ class _CustomFabState extends State<CustomFab> {
                           child: widget.icon,
                         ),
                         AnimatedCrossFade(
-                          firstChild: Text(widget.label),
+                          firstChild: Text(
+                            widget.label,
+                            style: TextStyle(color: Colors.white),
+                          ),
                           secondChild: Text(""),
                           crossFadeState: ctrl.isOpen.value
                               ? CrossFadeState.showFirst
@@ -77,15 +81,48 @@ class _CustomFabState extends State<CustomFab> {
                   height: 50,
                   width: ctrl.isOpen.value ? 100 : 50,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    // color: Theme.of(context).primaryColor,
+                    color: accent,
+
                     borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      colors: [
+                        ishandOver
+                            ? accent
+                            : HSLColor.fromColor(accent)
+                                .withLightness(0.4)
+                                .toColor(),
+                        accent,
+                        accent,
+                        accent,
+                        accent,
+                      ],
+                      stops: [
+                        0.10,
+                        0.02,
+                        0.3,
+                        0.3,
+                        0.3,
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
+                        color: accent.withOpacity(0.2),
                         offset: Offset(0, 0),
                         blurRadius: 5,
                         spreadRadius: 1,
-                      )
+                      ),
+                      // BoxShadow(
+                      //   color: HSLColor.fromColor(accent)
+                      //       .withLightness(0.4)
+                      //       .toColor(),
+                      //   blurRadius: 0,
+                      //   spreadRadius: -0,
+                      //   offset: Offset(0, ishandOver ? 0 : 4),
+                      // ),
                     ],
                   ),
                 ),

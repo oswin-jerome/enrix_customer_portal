@@ -198,20 +198,49 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: accent,
+                        borderRadius: BorderRadius.circular(8),
+                        // border: Border(
+                        //   bottom: BorderSide(
+                        //     color: Colors.grey,
+                        //     width: 1,
+                        //     style: BorderStyle.solid,
+                        //   ),
+                        // ),
+                        gradient: LinearGradient(
+                          colors: [
+                            HSLColor.fromColor(accent)
+                                .withLightness(0.4)
+                                .toColor(),
+                            accent,
+                            accent,
+                            accent,
+                            accent,
+                          ],
+                          stops: [
+                            0.10,
+                            0.02,
+                            0.3,
+                            0.3,
+                            0.3,
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
                         ),
-                        onPressed: () {
-                          _login();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(14.0),
-                          child: Text("Login"),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            _login();
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.all(14.0),
+                            child: Text("Login",
+                                style: TextStyle(color: Colors.white)),
+                          ),
                         ),
                       ),
                     ),

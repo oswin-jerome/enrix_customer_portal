@@ -26,6 +26,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
   int currentPage = 1;
   bool isLoading = false;
   ScrollController _scrollController = new ScrollController();
+  RefreshController? _refreshController;
   @override
   void initState() {
     super.initState();
@@ -38,9 +39,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
     if (lastPage < currentPage) {
       //print("Byeee");
-      _refreshController.refreshCompleted();
-      _refreshController.loadComplete();
-      _refreshController.loadNoData();
+      _refreshController?.refreshCompleted();
+      _refreshController?.loadComplete();
+      _refreshController?.loadNoData();
       return;
     }
 
@@ -82,8 +83,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
           }
           isLoading = false;
         });
-        _refreshController.refreshCompleted();
-        _refreshController.loadComplete();
+        _refreshController?.refreshCompleted();
+        _refreshController?.loadComplete();
       },
     );
 
@@ -96,10 +97,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
     getData();
   }
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
   @override
   Widget build(BuildContext context) {
+    _refreshController = RefreshController(initialRefresh: false);
+
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       opacity: 0.3,
@@ -112,7 +113,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
           backgroundColor: Colors.transparent,
         ),
         body: SmartRefresher(
-          controller: _refreshController,
+          controller: _refreshController!,
           enablePullUp: true,
           onRefresh: _refresh,
           onLoading: getData,

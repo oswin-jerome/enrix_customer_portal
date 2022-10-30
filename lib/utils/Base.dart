@@ -8,27 +8,24 @@ class Base {
   static DateFormat formaterr = DateFormat('dd-MM-yyyy');
   static DateFormat userDate = DateFormat('MMM y');
 
-  static var baseUrl = "https://admin.enrixpropertymanagement.in/api/";
-  static var baseUrlWithoutApi = "https://admin.enrixpropertymanagement.in/";
+  static var baseUrl = "http://uat.enrix.in/api/";
+  static var baseUrlWithoutApi = "http://uat.enrix.in/";
 }
+
+Color accent = const Color(0xFFC74B50);
 
 Color getColor(String text) {
   switch (text) {
     case "open":
       return Colors.red;
-      break;
     case "rejected":
       return Colors.red;
-      break;
     case "priority":
       return Colors.red;
-      break;
     case "on process":
       return Colors.orange;
-      break;
     case "closed":
       return Colors.green;
-      break;
     default:
       return Colors.orange;
   }

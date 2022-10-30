@@ -15,7 +15,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import './../../../others/pie_chart.dart' as pie;
 
 class FinanceFragment extends StatefulWidget {
-  int propertyId;
+  int? propertyId;
   Finance finance;
   String propertyName;
   String type;
@@ -31,7 +31,7 @@ class FinanceFragment extends StatefulWidget {
 
   @override
   _FinanceFragmentState createState() => _FinanceFragmentState(
-      propertyId: propertyId,
+      propertyId: propertyId ?? null,
       propertyName: propertyName,
       finance: finance,
       type: type,
@@ -39,7 +39,7 @@ class FinanceFragment extends StatefulWidget {
 }
 
 class _FinanceFragmentState extends State<FinanceFragment> {
-  int propertyId;
+  int? propertyId;
   String propertyName;
   Finance finance;
   String type;

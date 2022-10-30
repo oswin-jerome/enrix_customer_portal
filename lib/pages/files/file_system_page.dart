@@ -11,6 +11,8 @@ import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FileSystemPage extends StatefulWidget {
+  int? propertyId;
+  FileSystemPage({this.propertyId});
   // FileSystemPage() {
   //   controller.folderId.value = 0;
   //   controller.getRootFolder();
@@ -21,7 +23,16 @@ class FileSystemPage extends StatefulWidget {
 }
 
 class _FileSystemPageState extends State<FileSystemPage> {
-  var controller = Get.put(FileSystemController(properyID: 1));
+  int? propertyId;
+  _FileSystemPageState({this.propertyId});
+  var controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.put(FileSystemController(properyID: widget.propertyId!));
+  }
+
   List<String> _downloading = [];
   List _subFolderStack = [];
   List breadCrums = [
@@ -33,6 +44,11 @@ class _FileSystemPageState extends State<FileSystemPage> {
 
   _downloadFile(String filename) async {
     var fileUrl = Base.baseUrlWithoutApi + "storage/files/fs/" + filename;
+
+    if (filename.contains("authletter")) {
+      fileUrl =
+          Base.baseUrlWithoutApi + filename.replaceAll("public", "storage");
+    }
     Directory dir = await getApplicationDocumentsDirectory();
 
     File file = new File(dir.path + "/" + filename);
@@ -162,6 +178,7 @@ class _FileSystemPageState extends State<FileSystemPage> {
                   return ListTile(
                     onTap: () {
                       if (controller.filesAndFolders[i]['type'] == 'folder') {
+                        controller.propertyId.value = widget.propertyId;
                         setState(() {
                           _subFolderStack.add({
                             "id": controller.folderId.value,

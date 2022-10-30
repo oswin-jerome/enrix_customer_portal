@@ -20,6 +20,15 @@ class _SignPageState extends State<SignPage> {
 
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    _signatureView = SignatureView(
+      penStyle: Paint()
+        ..color = Colors.blue
+        ..strokeCap = StrokeCap.round
+        ..strokeWidth = 5.0,
+      onSigned: (data) {
+        print("On change $data");
+      },
+    );
   }
 
   @override
@@ -29,7 +38,7 @@ class _SignPageState extends State<SignPage> {
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   }
 
-  SignatureView _signatureView = new SignatureView();
+  SignatureView? _signatureView;
 
   Future<File> writeToFile(Uint8List data, String path) {
     // final buffer = data.buffer;
@@ -59,7 +68,7 @@ class _SignPageState extends State<SignPage> {
         ".png");
 
     await sign
-        .writeAsBytes(List.from(await _signatureView.exportBytes() ?? []));
+        .writeAsBytes(List.from(await _signatureView?.exportBytes() ?? []));
 
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
@@ -83,7 +92,7 @@ class _SignPageState extends State<SignPage> {
           TextButton(
             child: Text("Clear"),
             onPressed: () {
-              _signatureView.clear();
+              _signatureView?.clear();
             },
           ),
           IconButton(

@@ -234,7 +234,12 @@ class _PropertyCardState extends State<PropertyCard>
                               //     ),
                               //   ),
                               // );
-                              navigateWithFade(context, FileSystemPage());
+                              navigateWithFade(
+                                context,
+                                FileSystemPage(
+                                  propertyId: widget.property.id,
+                                ),
+                              );
                             },
                             child: Container(
                               color: Colors.white,
@@ -275,7 +280,7 @@ class _PropertyCardState extends State<PropertyCard>
                                   ));
                             },
                             child: Stack(
-                              overflow: Overflow.visible,
+                              // overflow: Overflow.visible,
                               children: [
                                 Container(
                                   width: cellWidth,

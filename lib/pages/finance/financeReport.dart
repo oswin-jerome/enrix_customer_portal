@@ -1,3 +1,4 @@
+import 'package:customer_portal/utils/Base.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:customer_portal/Controllers/ExportController.dart';
 import 'package:customer_portal/Controllers/FinanceConroller.dart';
@@ -58,16 +59,16 @@ class _FinanceReportPageState extends State<FinanceReportPage>
     controller.getData(
         dataToLoad: _filterPeriod,
         type: "Income",
-        propertyID: widget.propertyId!);
+        propertyID: widget.propertyId ?? null);
 
     controller.getData(
         dataToLoad: _filterPeriod,
         type: "Expense",
-        propertyID: widget.propertyId!);
+        propertyID: widget.propertyId ?? null);
     controller.getData(
         dataToLoad: _filterPeriod,
         type: "Withdrawals",
-        propertyID: widget.propertyId!);
+        propertyID: widget.propertyId ?? null);
 
     controller.getBarData();
   }
@@ -277,7 +278,10 @@ class _FinanceReportPageState extends State<FinanceReportPage>
         // floatingActionButton: CustomFab(),
         floatingActionButton: CustomFab(
             label: "Filter",
-            icon: Icon(Icons.filter_list_rounded),
+            icon: Icon(
+              Icons.filter_list_rounded,
+              color: Colors.white,
+            ),
             onPress: () {
               // controller.getData(
               //     dataToLoad: _filterPeriod,
@@ -367,6 +371,11 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                                                                     top: 10),
                                                             child:
                                                                 ElevatedButton(
+                                                                    style: ElevatedButton
+                                                                        .styleFrom(
+                                                                      primary:
+                                                                          accent,
+                                                                    ),
                                                                     onPressed:
                                                                         () {
                                                                       setState(
@@ -532,7 +541,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                 width: MediaQuery.of(context).size.width - 80,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Colors.grey.shade200,
+                  color: accent.withOpacity(0.1),
                 ),
                 child: MyTabBar(
                   tabController: _tabController,
@@ -575,11 +584,13 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   return Center(
                     child: Text("No data for " +
                         convertConstantsToMessage(
-                            con: _filterPeriod, from: frm!, to: too!)),
+                            con: _filterPeriod,
+                            from: frm ?? "",
+                            to: too ?? "")),
                   );
                 }
                 return FinanceFragment(
-                  propertyId: widget.propertyId!,
+                  propertyId: widget.propertyId ?? null,
                   propertyName: widget.propertyName,
                   finance: finance,
                   type: "Income",
@@ -608,11 +619,13 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   return Center(
                     child: Text("No data for " +
                         convertConstantsToMessage(
-                            con: _filterPeriod, from: frm!, to: too!)),
+                            con: _filterPeriod,
+                            from: frm ?? "",
+                            to: too ?? "")),
                   );
                 }
                 return FinanceFragment(
-                  propertyId: widget.propertyId!,
+                  propertyId: widget.propertyId ?? null,
                   propertyName: widget.propertyName,
                   finance: finance,
                   type: "Expense",
@@ -641,11 +654,13 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   return Center(
                     child: Text("No data for " +
                         convertConstantsToMessage(
-                            con: _filterPeriod, from: frm!, to: too!)),
+                            con: _filterPeriod,
+                            from: frm ?? "",
+                            to: too ?? "")),
                   );
                 }
                 return FinanceFragment(
-                  propertyId: widget.propertyId!,
+                  propertyId: widget.propertyId ?? null,
                   propertyName: widget.propertyName,
                   finance: finance,
                   type: "Others",

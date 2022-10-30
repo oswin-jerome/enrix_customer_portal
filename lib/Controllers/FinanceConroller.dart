@@ -168,6 +168,8 @@ class FinanceConroller extends GetxController {
           "bardata",
         );
     print(response.data['data']);
-    barExpense.value = response.data["data"];
+    if (response.data['data'].length > 0) {
+      barExpense.value = response.data['data'];
+    }
   }
 }

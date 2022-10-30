@@ -79,14 +79,14 @@ class _PaymentPageState extends State<PaymentPage>
       initialIndex: 0,
       length: 2,
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            _getClosed();
-            // _opened = [];
-            // _getOpen();
-          },
-          child: Icon(Icons.refresh),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () async {
+        //     _getClosed();
+        //     // _opened = [];
+        //     // _getOpen();
+        //   },
+        //   child: Icon(Icons.refresh),
+        // ),
         appBar: AppBar(
           backgroundColor: Colors.white10,
           elevation: 0,
@@ -118,7 +118,7 @@ class _PaymentPageState extends State<PaymentPage>
                 width: MediaQuery.of(context).size.width - 80,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Colors.grey.shade200,
+                  color: accent.withOpacity(0.1),
                 ),
                 child: MyTabBar(
                   tabs: [

@@ -54,9 +54,9 @@ class Task {
         userId: json["user_id"],
         requestCategoryId:
             int.tryParse(json["request_category_id"].toString()) ?? null,
-        approved: json["approved"],
+        approved: json["approved"] ?? "",
         createdBy: json["created_by"],
-        progress: json['pogress'],
+        progress: json['pogress'] ?? 0,
         replies:
             List<Reply>.from(json["replies"].map((x) => Reply.fromJson(x))),
       );

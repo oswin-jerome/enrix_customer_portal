@@ -41,14 +41,14 @@ PODS:
   - Firebase/Messaging (8.11.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 8.11.0)
-  - firebase_core (1.12.0):
+  - firebase_core (1.13.1):
     - Firebase/CoreOnly (= 8.11.0)
     - Flutter
-  - firebase_in_app_messaging (0.6.0-7):
+  - firebase_in_app_messaging (0.6.0-9):
     - Firebase/InAppMessaging (= 8.11.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (11.2.6):
+  - firebase_messaging (11.2.11):
     - Firebase/Messaging (= 8.11.0)
     - firebase_core
     - Flutter
@@ -107,7 +107,7 @@ PODS:
     - GoogleUtilities/Logger
   - image_cropper (0.0.4):
     - Flutter
-    - TOCropViewController (~> 2.6.0)
+    - TOCropViewController (~> 2.6.1)
   - image_picker (0.0.1):
     - Flutter
   - image_viewer (0.0.1):
@@ -221,9 +221,9 @@ SPEC CHECKSUMS:
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
-  firebase_core: 443bccfd6aa6b42f07be365b500773dc69db2d87
-  firebase_in_app_messaging: 2c09e013fa0e4ce2367de5936bc9e1334512c3a2
-  firebase_messaging: 8dc3a6f069774a0bf4dac04dd79fdaffcb62e145
+  firebase_core: 08f6a85f62060111de5e98d6a214810d11365de9
+  firebase_in_app_messaging: 5937abf8acacbe3d35123a4c845ccf9d1669d7ed
+  firebase_messaging: 4a993bb4aa1a83349988d853c637fbb0494dab15
   FirebaseABTesting: aac00a5472250a45f1462675792030e44df025c7
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
   FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
@@ -233,24 +233,24 @@ SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
+  image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
   image_viewer: 3ff6248139d02dd4e15d4329bb36c69f00e615e2
   modal_progress_hud_nsn: f6fb744cd060653d66ed8f325360ef3650eb2fde
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
-  path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
-  shared_preferences_ios: aef470a42dc4675a1cdd50e3158b42e3d1232b32
+  shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
   syncfusion_flutter_pdfviewer: bb9998884b864cfedf72628df3503bdf57e397c0
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
-  url_launcher_ios: 02f1989d4e14e998335b02b67a7590fa34f971af
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
   video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
   webview_flutter_wkwebview: 005fbd90c888a42c5690919a1527ecc6649e1162
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

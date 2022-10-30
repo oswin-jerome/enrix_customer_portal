@@ -108,7 +108,8 @@ class _PieChartState extends State<PieChart>
               widget.colorList,
               chartValueStyle: widget.chartValuesOptions.chartValueStyle,
               chartValueBackgroundColor:
-                  widget.chartValuesOptions.chartValueBackgroundColor!,
+                  widget.chartValuesOptions.chartValueBackgroundColor ??
+                      Colors.transparent,
               values: legendValues!,
               titles: legendTitles!,
               initialAngle: widget.initialAngleInDegree,
@@ -118,8 +119,8 @@ class _PieChartState extends State<PieChart>
               showChartValueLabel:
                   widget.chartValuesOptions.showChartValueBackground,
               chartType: widget.chartType,
-              centerText: widget.centerText!,
-              formatChartValues: widget.formatChartValues!,
+              centerText: widget.centerText ?? "",
+              formatChartValues: widget.formatChartValues ?? null,
               strokeWidth: widget.ringStrokeWidth,
             ),
             child: AspectRatio(aspectRatio: 1),

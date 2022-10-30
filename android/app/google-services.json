@@ -1,92 +1,41 @@
 {
   "project_info": {
-    "project_number": "1092196399464",
-    "firebase_url": "https://my-awesome-projects-web.firebaseio.com",
-    "project_id": "my-awesome-projects-web",
-    "storage_bucket": "my-awesome-projects-web.appspot.com"
+    "project_number": "659068741168",
+    "project_id": "enrix-b77d7",
+    "storage_bucket": "enrix-b77d7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1092196399464:android:4257d44d9f5701e320fedd",
-        "android_client_info": {
-          "package_name": "com.example.bidforabun_admin"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBsAExoDuKCnLIAfPT8NMZgYarQwaswCW8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1092196399464:android:328dd627b4e0876e20fedd",
-        "android_client_info": {
-          "package_name": "in.dynamicdreamers.enrix"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBsAExoDuKCnLIAfPT8NMZgYarQwaswCW8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1092196399464:android:56b07cfbc7cc8b9120fedd",
+        "mobilesdk_app_id": "1:659068741168:android:48b2172526b1c48b9eeff5",
         "android_client_info": {
           "package_name": "in.enrix.customer_portal"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+          "client_id": "659068741168-q6hi26ah45165s79qo9rmn8ned3p1gki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.enrix.customer_portal",
+            "certificate_hash": "1f8b12ace1a9ee70c2a4dbbe67518a1835136224"
+          }
+        },
+        {
+          "client_id": "659068741168-taam6n20mi3ljslj36eegf19o7dmo50d.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBsAExoDuKCnLIAfPT8NMZgYarQwaswCW8"
+          "current_key": "AIzaSyCvwmCu-LYyyLIugaZQPPfFlRzDJfPjz0Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1092196399464-qh4a3vuob7uf55e66qb7k9vjimh3vncl.apps.googleusercontent.com",
+              "client_id": "659068741168-taam6n20mi3ljslj36eegf19o7dmo50d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

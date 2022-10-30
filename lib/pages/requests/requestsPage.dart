@@ -137,7 +137,10 @@ class _RequestsPageState extends State<RequestsPage>
             _getOpen();
           },
           label: "New",
-          icon: Icon(Icons.add),
+          icon: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
         ),
         appBar: AppBar(
           backgroundColor: Colors.white10,
@@ -156,9 +159,9 @@ class _RequestsPageState extends State<RequestsPage>
                 padding: EdgeInsets.symmetric(vertical: 3),
                 width: MediaQuery.of(context).size.width - 80,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.grey.shade200,
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    // color: Colors.grey.shade200,
+                    color: accent.withOpacity(0.1)),
                 child: MyTabBar(
                   // tabController: _tabController,
                   tabs: [

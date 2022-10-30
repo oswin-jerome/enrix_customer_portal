@@ -1,4 +1,5 @@
 import 'package:customer_portal/pages/auth/loginPage.dart';
+import 'package:customer_portal/utils/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -233,6 +234,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                     children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          primary: accent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -266,7 +268,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                             _current = _introController.page!.toInt();
                           });
                         },
-                        child: Text("Next"),
+                        child: Text(
+                          "Next",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ],
                   ),

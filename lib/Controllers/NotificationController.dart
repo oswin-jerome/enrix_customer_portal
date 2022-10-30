@@ -17,7 +17,7 @@ class NotificationController extends GetxController {
     super.onInit();
     // getData();
     getPending();
-    Timer.periodic(Duration(seconds: 10), (time) {
+    Timer.periodic(Duration(minutes: 10), (time) {
       //print("############# Checking for new notifications ###############");
       getPending();
     });
@@ -88,26 +88,10 @@ class NotificationController extends GetxController {
         .dio
         .get(
           "notifications/unread",
-          // options: Options(
-          //   headers: {
-          //     "Accept": "application/json",
-          //     "Content-Type": "application/json",
-          //     "Authorization": "Bearer " + _token
-          //   },
-          //   followRedirects: false,
-          //   validateStatus: (status) {
-          //     return status < 500;
-          //   },
-          // ),
         )
         .then(
       (value) {
-        // //print(value);
-        // var prev = pending.value;
         pending.value = notificationFromJson(jsonEncode(value.data)).length;
-        // if (pending.value > 0 && prev != pending.value) {
-        //   getData();
-        // }
       },
     );
   }

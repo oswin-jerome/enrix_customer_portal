@@ -21,9 +21,9 @@ class _CreateRequestPageState extends State<CreateRequestPage> {
   List<Property> _properties = [];
   List<RequestCategory> _categories = [];
   bool isLoading = false;
-  String _property = "";
+  String? _property;
   String _description = "";
-  String _categoryID = "";
+  String? _categoryID;
   final _form1 = GlobalKey<FormState>();
 
   @override
@@ -122,12 +122,18 @@ class _CreateRequestPageState extends State<CreateRequestPage> {
             confirmButtonColor: Colors.grey,
             // titleStyle: TextStyle(fontSize: 16),
             type: ArtSweetAlertType.success,
+
             onConfirm: (a) {
-              Navigator.pop(context);
+              // Navigator.pop(context);
               return;
             },
           ),
         );
+
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.pop(context);
+          Navigator.pop(context);
+        });
       }
     });
   }
@@ -154,29 +160,8 @@ class _CreateRequestPageState extends State<CreateRequestPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // SelectFormField(
-                  //   type: SelectFormFieldType.dropdown,
-                  //   onSaved: (val) {
-                  //     _property = val;
-                  //   },
-                  //   validator: (val) {
-                  //     if (val.isEmpty) {
-                  //       return "Field can't be empty";
-                  //     }
-
-                  //     return null;
-                  //   },
-                  //   items: _properties
-                  //       .map((e) =>
-                  //           {"value": e.id.toString(), "label": e.ownerName})
-                  //       .toList(),
-                  //   labelText: "My Properties",
-                  // ),
                   DropdownButtonFormField(
-                    // hintText: "Select a property",
-                    // filled: false,
                     value: _property,
-                    // titleText: "My Properties",
                     validator: (c) {
                       // //print(c);
                       if (c == null) {
@@ -251,13 +236,46 @@ class _CreateRequestPageState extends State<CreateRequestPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       submitRequest();
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text("Submit Request"),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: accent,
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                          colors: [
+                            HSLColor.fromColor(accent)
+                                .withLightness(0.4)
+                                .toColor(),
+                            accent,
+                            accent,
+                            accent,
+                            accent,
+                          ],
+                          stops: [
+                            0.10,
+                            0.02,
+                            0.3,
+                            0.3,
+                            0.3,
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Center(
+                          child: Text(
+                            "Submit Request",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   )
                 ],

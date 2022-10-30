@@ -11,6 +11,7 @@ import 'package:customer_portal/utils/Base.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:select_form_field/select_form_field.dart';
 import 'package:art_sweetalert/art_sweetalert.dart';
@@ -45,6 +46,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   String _preferedTime = "";
   String _modeOfContact = "Whatsapp";
   String _idproof = "";
+  String _altnumber = "";
   String _timeZone = "India Standard Time";
   late TextEditingController _controller;
   bool _isLoading = false;
@@ -59,6 +61,34 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _getTimeZones();
   }
 
+  _notifyUser() {
+    Future.delayed(Duration(seconds: 1)).then((value) {
+      ArtSweetAlert.show(
+          context: context,
+          artDialogArgs: ArtDialogArgs(
+            title: "Registered Successfully",
+            text:
+                "Your Account will be verified & activated in the next 48 hrs.",
+            // subtitleTextAlign: TextAlign.center,
+            dialogAlignment: Alignment.center,
+            confirmButtonColor: Colors.grey,
+            // titleStyle: TextStyle(fontSize: 16),
+
+            // style: SweetAlertV2Style.success,
+
+            onConfirm: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (builder) => LoginPage(),
+                ),
+              );
+              return;
+            },
+          ));
+    });
+  }
+
   _getTimeZones() async {
     String data = await DefaultAssetBundle.of(context)
         .loadString("assets/data/timezone.json");
@@ -66,7 +96,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     print(jsonResult[0]['value']);
     jsonResult.forEach((element) {
       _timeZones.add(DropdownMenuItem(
-        child: Text(element['value']),
+        child: Text(element['text']),
         value: element['value'],
       ));
     });
@@ -101,36 +131,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
         _isLoading = false;
       });
       if (value.statusCode == 200) {
-        Future.delayed(Duration(seconds: 3)).then((value) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (builder) => LoginPage(),
-            ),
-          );
-        });
-        ArtSweetAlert.show(
-            context: context,
-            artDialogArgs: ArtDialogArgs(
-              title: "Registered Successfully",
-              text:
-                  "Your Account will be verified & activated in the next 48 hrs.",
-              // subtitleTextAlign: TextAlign.center,
-              dialogAlignment: Alignment.center,
-              confirmButtonColor: Colors.grey,
-              // titleStyle: TextStyle(fontSize: 16),
-
-              // style: SweetAlertV2Style.success,
-              onConfirm: (a) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (builder) => LoginPage(),
-                  ),
-                );
-                return;
-              },
-            ));
+        // Future.delayed(Duration(seconds: 3)).then((value) {
+        //   Navigator.pushReplacement(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (builder) => LoginPage(),
+        //     ),
+        //   );
+        // });
+        _notifyUser();
       }
     }).catchError((e) {
       setState(() {
@@ -235,8 +244,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               return "Field can't be empty";
                             }
 
-                            if (val.length < 7) {
-                              return "Minimum 8 characters required";
+                            if (val.length < 6) {
+                              return "Minimum 6 characters required";
                             }
 
                             return null;
@@ -267,7 +276,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             return null;
                           },
                           onSaved: (val) {
-                            _password = val!;
+                            _confirmPassword = val!;
                           },
                           obscureText: true,
                           decoration:
@@ -292,6 +301,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           firstDate: DateTime(1900),
                           lastDate: DateTime(2100),
                           dateLabelText: 'Date of Birth',
+                          initialValue: _dateofbirth,
                           onSaved: (s) {
                             //print(s);
                             _dateofbirth = s!;
@@ -306,23 +316,39 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             return null;
                           },
                         ),
-                        TextFormField(
+                        IntlPhoneField(
                           initialValue: _phone,
-                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            label: Text("Phone"),
+                          ),
                           validator: (val) {
-                            if (val!.isEmpty) {
+                            if (val == null || val.completeNumber.isEmpty) {
                               return "Field can't be empty";
                             }
-                            if (!RegExp(r"^[0-9]*$").hasMatch(val)) {
-                              return "Enter a valid phone number";
-                            }
+
                             return null;
                           },
                           onSaved: (val) {
-                            _phone = val!;
+                            _phone = val?.completeNumber ?? "";
                           },
-                          decoration: InputDecoration(labelText: "Phone"),
-                        )
+                        ),
+                        // TextFormField(
+                        //   initialValue: _phone,
+                        //   keyboardType: TextInputType.phone,
+                        //   validator: (val) {
+                        //     if (val!.isEmpty) {
+                        //       return "Field can't be empty";
+                        //     }
+                        //     if (!RegExp(r"^[0-9]*$").hasMatch(val)) {
+                        //       return "Enter a valid phone number";
+                        //     }
+                        //     return null;
+                        //   },
+                        //   onSaved: (val) {
+                        //     _phone = val!;
+                        //   },
+                        //   decoration: InputDecoration(labelText: "Phone"),
+                        // )
                       ],
                     ),
                   ),
@@ -391,7 +417,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         TextFormField(
                           initialValue: _zipcode,
-                          keyboardType: TextInputType.number,
                           validator: (val) {
                             if (val!.isEmpty) {
                               return "Field can't be empty";
@@ -548,32 +573,35 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        DropdownButtonFormField(
-                          // hintText: "Select your time zone",
-                          // filled: false,
-                          value: _timeZone,
-                          // titleText: "Time Zone",
-                          validator: (c) {
-                            // //print(c);
-                            if (c == null) {
-                              return "required";
-                            }
-                            return null;
-                          },
-                          // contentPadding: EdgeInsets.only(left: 0, right: 12),
-                          onChanged: (String? s) {
-                            setState(() {
-                              _timeZone = s!;
-                            });
-                          },
-                          onSaved: (String? s) {
-                            setState(() {
-                              _timeZone = s!;
-                            });
-                          },
-                          items: _timeZones,
-                          // textField: 'text',
-                          // valueField: 'value',
+                        SizedBox(
+                          child: DropdownButtonFormField(
+                            // hintText: "Select your time zone",
+                            // filled: false,
+                            value: _timeZone,
+                            // titleText: "Time Zone",
+
+                            validator: (c) {
+                              // //print(c);
+                              if (c == null) {
+                                return "required";
+                              }
+                              return null;
+                            },
+                            // contentPadding: EdgeInsets.only(left: 0, right: 12),
+                            onChanged: (String? s) {
+                              setState(() {
+                                _timeZone = s!;
+                              });
+                            },
+                            onSaved: (String? s) {
+                              setState(() {
+                                _timeZone = s!;
+                              });
+                            },
+                            items: _timeZones,
+                            // textField: 'text',
+                            // valueField: 'value',
+                          ),
                         ),
                         SelectFormField(
                           initialValue: _modeOfContact,
@@ -588,7 +616,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           labelText: "Prefered Contact mode",
                         ),
                         TextFormField(
-                          initialValue: "",
+                          initialValue: _altnumber,
                           validator: (val) {
                             // if (val!.isEmpty) {
                             //   return "Field can't be empty";
@@ -597,7 +625,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             return null;
                           },
                           onSaved: (val) {
-                            _idproof = val!;
+                            _altnumber = val!;
+                          },
+                          onChanged: (val) {
+                            _altnumber = val;
                           },
                           decoration:
                               InputDecoration(labelText: "Alternate number"),
@@ -611,6 +642,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                             return null;
                           },
+                          onChanged: (val) {
+                            _idproof = val;
+                          },
                           onSaved: (val) {
                             _idproof = val!;
                           },
@@ -622,10 +656,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 margin: EdgeInsets.only(top: 10),
                                 child: Column(
                                   children: [
-                                    Text(
-                                      _img!.path.split("/").last,
-                                      style: TextStyle(color: Colors.green),
-                                    ),
+                                    // Text(
+                                    //   _img!.path.split("/").last,
+                                    //   style: TextStyle(color: Colors.green),
+                                    // ),
+                                    Image.file(_img!, height: 150),
                                     SizedBox(
                                       height: 10,
                                     ),

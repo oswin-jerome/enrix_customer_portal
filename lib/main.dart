@@ -16,11 +16,12 @@ Future<void> main() async {
   // Directory temp = await getApplicationDocumentsDirectory();
   // Hive.init(temp.path);
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   await Hive.initFlutter();
   Hive.registerAdapter(PiwdAdapter());
   await Hive.openBox("store");
   await Hive.openBox("cache_store");
-  await Firebase.initializeApp();
 
   runApp(MyApp());
 }

@@ -80,6 +80,8 @@ class _CalenderPageState extends State<CalenderPage> {
                   fontSize: 16,
                 ),
               ),
+              todayHighlightColor: accent,
+
               // allowedViews: [
               //   CalendarView.month,
               //   // CalendarView.schedule,

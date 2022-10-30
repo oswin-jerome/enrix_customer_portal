@@ -476,8 +476,28 @@ class _ProfilePageState extends State<ProfilePage> {
                                   width:
                                       MediaQuery.of(context).size.width / 0.5,
                                   decoration: BoxDecoration(
-                                    color: Colors.grey[400],
+                                    color: accent,
                                     borderRadius: BorderRadius.circular(5),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        HSLColor.fromColor(accent)
+                                            .withLightness(0.4)
+                                            .toColor(),
+                                        accent,
+                                        accent,
+                                        accent,
+                                        accent,
+                                      ],
+                                      stops: [
+                                        0.10,
+                                        0.02,
+                                        0.3,
+                                        0.3,
+                                        0.3,
+                                      ],
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                    ),
                                     boxShadow: [
                                       BoxShadow(
                                           color: Colors.black.withOpacity(0.2),
@@ -487,14 +507,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                           )
                                     ],
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(
                                         vertical: 12, horizontal: 15),
                                     child: Center(
                                       child: Text(
                                         "Logout",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -840,21 +861,11 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
                   right: 5,
                   child: GestureDetector(
                     onTap: () async {
-                      //print("tap");
-                      //   var res = await ImagesPicker.pick(
-                      //       count: 1,
-                      //       cropOpt:
-                      //           CropOption(aspectRatio: CropAspectRatio(1, 1)),
-                      //       pickType: PickType.image);
-                      //   if (res != null) {
-                      //     File f = File(res[0].path);
-                      //     changeImage(f);
-                      // }
-                      var res =
-                          await picker.getImage(source: ImageSource.gallery);
+                      XFile? res =
+                          await picker.pickImage(source: ImageSource.gallery);
 
                       if (res != null) {
-                        File? croppedFile = await ImageCropper.cropImage(
+                        File? croppedFile = await ImageCropper().cropImage(
                             sourcePath: res.path,
                             aspectRatioPresets: [
                               CropAspectRatioPreset.square,
@@ -879,7 +890,7 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
                       opacity: percent > 0.01 ? 0 : 1,
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.grey[700],
+                            color: accent,
                             borderRadius: BorderRadius.circular(50)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

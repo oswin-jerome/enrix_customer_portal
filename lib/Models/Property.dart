@@ -119,10 +119,10 @@ class Property {
 
   List<String> approvalSteps() {
     return [
-      statusPropertyDetails!,
-      statusInspection!,
-      statusApproval!,
-      statusAgreement!
+      statusPropertyDetails ?? "",
+      statusInspection ?? '',
+      statusApproval ?? "",
+      statusAgreement ?? ""
     ];
   }
 
