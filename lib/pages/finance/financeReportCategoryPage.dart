@@ -1,3 +1,4 @@
+import 'package:customer_portal/others/pie_chart.dart';
 import 'package:customer_portal/pages/finance/financeReport.dart';
 import 'package:customer_portal/pages/finance/incomeReportPage.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +29,11 @@ class _FinanceReportCategoryPageState extends State<FinanceReportCategoryPage> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(
+              navigateWithFade(
                 context,
-                MaterialPageRoute(
-                  builder: (v) => FinanceReportPage(
-                    propertyId: widget.propertId,
-                    propertyName: widget.propertyName,
-                  ),
+                FinanceReportPage(
+                  propertyId: widget.propertId,
+                  propertyName: widget.propertyName,
                 ),
               );
             },

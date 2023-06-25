@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:customer_portal/others/pie_chart.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:dio/dio.dart';
 import 'package:customer_portal/Models/Task.dart';
@@ -115,24 +116,29 @@ class _RequestsPageState extends State<RequestsPage>
             //   transition: Transition.rightToLeftWithFade,
             //   curve: Curves.easeInOut,
             // );
-            await Navigator.push(
+
+            await navigateWithFade(
               context,
-              PageRouteBuilder(
-                pageBuilder: (ctx, ani, secani) => CreateRequestPage(),
-                transitionDuration: Duration(milliseconds: 300),
-                reverseTransitionDuration: Duration(milliseconds: 200),
-                fullscreenDialog: true,
-                transitionsBuilder: (ctx, ani, secani, child) {
-                  return Transform.scale(
-                    scale: Tween(begin: 0.9, end: 1.0).transform(ani.value),
-                    child: Opacity(
-                      opacity: Tween(begin: 0.0, end: 1.0).transform(ani.value),
-                      child: child,
-                    ),
-                  );
-                },
-              ),
+              CreateRequestPage(),
             );
+            // await Navigator.push(
+            //   context,
+            //   PageRouteBuilder(
+            //     pageBuilder: (ctx, ani, secani) => CreateRequestPage(),
+            //     transitionDuration: Duration(milliseconds: 300),
+            //     reverseTransitionDuration: Duration(milliseconds: 200),
+            //     fullscreenDialog: true,
+            //     transitionsBuilder: (ctx, ani, secani, child) {
+            //       return Transform.scale(
+            //         scale: Tween(begin: 0.9, end: 1.0).transform(ani.value),
+            //         child: Opacity(
+            //           opacity: Tween(begin: 0.0, end: 1.0).transform(ani.value),
+            //           child: child,
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // );
             _opened = [];
             _getOpen();
           },

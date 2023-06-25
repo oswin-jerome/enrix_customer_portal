@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:customer_portal/others/src/utils.dart';
+import 'package:customer_portal/pages/auth/registerationPageNew.dart';
 import 'package:dio/dio.dart';
 import 'package:customer_portal/Controllers/UserController.dart';
 import 'package:customer_portal/components/customLoader.dart';
@@ -33,13 +36,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _authCheck() async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    if (_pref.getString("token") != null) {
-      Navigator.pushReplacement(
+    var storeBox = Hive.box("store");
+
+    String? _token = storeBox.get("token");
+    if (_token != null) {
+      navigateWithFadeReplace(
         context,
-        MaterialPageRoute(
-          builder: (c) => Dashboard(),
-        ),
+        Dashboard(),
       );
     }
   }
@@ -59,6 +62,25 @@ class _LoginPageState extends State<LoginPage> {
     FormData _data =
         new FormData.fromMap({"email": _email, "password": _password});
     UserController().login(_data).then((res) {
+      if (res.data['user']['email_verified_at'] == null) {
+        ArtSweetAlert.show(
+            context: context,
+            artDialogArgs: ArtDialogArgs(
+              type: ArtSweetAlertType.warning,
+              title: "OOPS!!!",
+              text: "Please verify your email to continue.",
+              dialogAlignment: Alignment.center,
+              confirmButtonColor: Colors.grey,
+              onConfirm: () {
+                navigateWithFadeReplace(
+                  context,
+                  LoginPage(),
+                );
+                return;
+              },
+            ));
+        return res;
+      }
       if (res.statusCode != 200) {
         setState(() {
           _isLoading = false;
@@ -250,10 +272,7 @@ class _LoginPageState extends State<LoginPage> {
                     // ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (builder) => ForgotPasswordPage()));
+                        navigateWithFade(context, ForgotPasswordPage());
                       },
                       child: Text("Forgot password?"),
                     ),
@@ -291,10 +310,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (builder) => RegistrationPage()));
+                        navigateWithFadeReplace(context, RegistrationPageNew());
                       },
                       child: Text("Register"),
                     ),

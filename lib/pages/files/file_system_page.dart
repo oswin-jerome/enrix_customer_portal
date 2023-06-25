@@ -203,7 +203,7 @@ class _FileSystemPageState extends State<FileSystemPage> {
                       }
                     },
                     leading: controller.filesAndFolders[i]['type'] == 'folder'
-                        ? Icon(
+                        ? const Icon(
                             Icons.folder,
                             size: 45,
                           )

@@ -1,10 +1,13 @@
 import 'dart:convert';
 
+import 'package:art_sweetalert/art_sweetalert.dart';
+import 'package:customer_portal/utils/ApiHelper.dart';
 import 'package:dio/dio.dart' as ddio;
 import 'package:customer_portal/Models/Customer.dart';
 import 'package:customer_portal/pages/auth/loginPage.dart';
 import 'package:customer_portal/pages/dashboard.dart';
 import 'package:customer_portal/utils/Base.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -90,6 +93,11 @@ class UserController extends GetxController {
     var storeBox = Hive.box("store");
     if (res.statusCode == 200) {
       SharedPreferences _pref = await SharedPreferences.getInstance();
+
+      if (res.data['user']['email_verified_at'] == null) {
+        return res;
+      }
+
       _pref.setString("token", res.data['token']);
       storeBox.put("token", res.data['token']);
       storeBox.put("user", res.data['user']);
@@ -98,6 +106,28 @@ class UserController extends GetxController {
         Dashboard(),
       );
     }
+
+    return res;
+  }
+
+  Future<ddio.Response> register(
+      {@required name, @required email, @required password}) async {
+    ddio.Response res = await ApiHelper().dio.post(
+          Base.baseUrl + "register",
+          data: ddio.FormData.fromMap(
+            {
+              "name": name,
+              "email": email,
+              "password": password,
+            },
+          ),
+          options: ddio.Options(
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! < 500;
+            },
+          ),
+        );
 
     return res;
   }

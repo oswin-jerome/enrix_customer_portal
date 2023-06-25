@@ -1,14 +1,11 @@
 import 'dart:ui';
 
-import 'package:delayed_display/delayed_display.dart';
-import 'package:customer_portal/Controllers/ExportController.dart';
 import 'package:customer_portal/Controllers/NotificationController.dart';
-import 'package:customer_portal/Controllers/UserController.dart';
 import 'package:customer_portal/components/AppDrawer.dart';
 import 'package:customer_portal/db/Adapters/piwd_model.dart';
+import 'package:customer_portal/others/pie_chart.dart';
 import 'package:customer_portal/pages/Payments/PaymentsPage.dart';
 import 'package:customer_portal/pages/calenderPage.dart';
-import 'package:customer_portal/pages/extras/CropPage.dart';
 import 'package:customer_portal/pages/finance/financeReport.dart';
 import 'package:customer_portal/pages/finance/incomeReportPage.dart';
 import 'package:customer_portal/pages/notification/NotificationsPage.dart';
@@ -19,18 +16,15 @@ import 'package:customer_portal/pages/requests/requestsPage.dart';
 import 'package:customer_portal/pages/requests/tasksPage.dart';
 import 'package:customer_portal/utils/ApiHelper.dart';
 import 'package:customer_portal/utils/Base.dart';
+import 'package:delayed_display/delayed_display.dart';
 import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_material_pickers/helpers/show_time_picker.dart';
-import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:snap_scroll_physics/snap_scroll_physics.dart';
-import 'package:time_range/time_range.dart';
-import 'package:tutorial/tutorial.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -58,9 +52,9 @@ class _DashboardState extends State<Dashboard> {
         FirebaseInAppMessaging.instance;
     _firebaseInAppMessaging.triggerEvent("app_launch");
     _firebaseMessaging.getToken().then((token) {
-      print("token: $token");
+      // print("token: $token");
       ApiHelper().dio.post(Base.baseUrl + "fcm", data: {"fcm_token": token});
-      Clipboard.setData(ClipboardData(text: token));
+      // Clipboard.setData(ClipboardData(text: token));
     });
     _firebaseMessaging.requestPermission(
       alert: true,
@@ -84,7 +78,7 @@ class _DashboardState extends State<Dashboard> {
       pins = r.values.toList();
     });
     r.watch().listen((event) {
-      if (this.mounted) {
+      if (mounted) {
         setState(() {
           pins = r.values.toList();
         });
@@ -93,7 +87,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   final notificationController = Get.put(NotificationController());
-  ScrollController _gridScrollController = ScrollController();
+  final ScrollController _gridScrollController = ScrollController();
   bool _shouldShow = true;
   @override
   Widget build(BuildContext context) {
@@ -130,7 +124,7 @@ class _DashboardState extends State<Dashboard> {
                             _shouldShow = !_shouldShow;
                             // _isGrid = !_isGrid;
                           });
-                          Future.delayed(Duration(milliseconds: 300), () {
+                          Future.delayed(const Duration(milliseconds: 300), () {
                             setState(() {
                               _isGrid = !_isGrid;
                               _shouldShow = !_shouldShow;
@@ -161,15 +155,15 @@ class _DashboardState extends State<Dashboard> {
                         padding: const EdgeInsets.all(15.0),
                         child: GridView(
                           controller: _gridScrollController,
-                          padding:
-                              EdgeInsets.only(bottom: 10, left: 25, right: 25),
+                          padding: const EdgeInsets.only(
+                              bottom: 10, left: 25, right: 25),
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: _isGrid
                                 ? (MediaQuery.of(context).size.width > 500
-                                    ? 7
+                                    ? 3
                                     : 2)
                                 : 1,
                             childAspectRatio: _isGrid ? 1 / 1 : 3.7 / 1,
@@ -195,26 +189,28 @@ class _DashboardState extends State<Dashboard> {
                                     //   transition: Transition.size,
                                     // );
 
-                                    Navigator.push(
-                                        context,
-                                        PageRouteBuilder(
-                                          pageBuilder: (ctx, ani, secani) =>
-                                              ProfilePage(),
-                                          transitionDuration:
-                                              Duration(milliseconds: 300),
-                                          transitionsBuilder:
-                                              (ctx, ani, secani, child) =>
-                                                  Transform.scale(
-                                            scale: Tween(begin: 1.2, end: 1.0)
-                                                .transform(ani.value),
-                                            child: Opacity(
-                                              opacity:
-                                                  Tween(begin: 0.0, end: 1.0)
-                                                      .transform(ani.value),
-                                              child: child,
-                                            ),
-                                          ),
-                                        ));
+                                    navigateWithFade(context, ProfilePage());
+
+                                    // Navigator.push(
+                                    //     context,
+                                    //     PageRouteBuilder(
+                                    //       pageBuilder: (ctx, ani, secani) =>
+                                    //           ProfilePage(),
+                                    //       transitionDuration:
+                                    //           const Duration(milliseconds: 300),
+                                    //       transitionsBuilder:
+                                    //           (ctx, ani, secani, child) =>
+                                    //               Transform.scale(
+                                    //         scale: Tween(begin: 1.2, end: 1.0)
+                                    //             .transform(ani.value),
+                                    //         child: Opacity(
+                                    //           opacity:
+                                    //               Tween(begin: 0.0, end: 1.0)
+                                    //                   .transform(ani.value),
+                                    //           child: child,
+                                    //         ),
+                                    //       ),
+                                    //     ));
                                   },
                                 ),
                                 GridCard(
@@ -224,12 +220,8 @@ class _DashboardState extends State<Dashboard> {
                                   icon: "assets/bag.png",
                                   label: "Property List",
                                   onClick: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (bc) => PropertyListPage(),
-                                      ),
-                                    );
+                                    navigateWithFade(
+                                        context, PropertyListPage());
                                   },
                                 ),
                                 GridCard(
@@ -239,13 +231,17 @@ class _DashboardState extends State<Dashboard> {
                                   icon: "assets/logos/chart.png",
                                   label: "Finances",
                                   onClick: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (bc) => FinanceReportPage(
-                                            propertyName: "Properties"),
-                                      ),
-                                    );
+                                    navigateWithFade(
+                                        context,
+                                        FinanceReportPage(
+                                            propertyName: "Properties"));
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (bc) => FinanceReportPage(
+                                    //         propertyName: "Properties"),
+                                    //   ),
+                                    // );
                                   },
                                 ),
                                 GridCard(
@@ -255,11 +251,9 @@ class _DashboardState extends State<Dashboard> {
                                   icon: "assets/cal.png",
                                   label: "Calendar",
                                   onClick: () {
-                                    Navigator.push(
+                                    navigateWithFade(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (bc) => CalenderPage(),
-                                      ),
+                                      CalenderPage(),
                                     );
                                   },
                                 ),
@@ -270,11 +264,9 @@ class _DashboardState extends State<Dashboard> {
                                   icon: "assets/check.png",
                                   label: "Requests",
                                   onClick: () {
-                                    Navigator.push(
+                                    navigateWithFade(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (bc) => RequestsPage(),
-                                      ),
+                                      RequestsPage(),
                                     );
                                   },
                                 ),
@@ -285,12 +277,10 @@ class _DashboardState extends State<Dashboard> {
                                   icon: "assets/logos/tick.png",
                                   label: "All Tasks",
                                   onClick: () {
-                                    Navigator.push(
+                                    navigateWithFade(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (bc) => TasksPage(
-                                          propertyName: "Properties",
-                                        ),
+                                      TasksPage(
+                                        propertyName: "Properties",
                                       ),
                                     );
                                   },
@@ -302,11 +292,9 @@ class _DashboardState extends State<Dashboard> {
                                   icon: "assets/card.png",
                                   label: "Payments",
                                   onClick: () {
-                                    Navigator.push(
+                                    navigateWithFade(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (bc) => PaymentPage(),
-                                      ),
+                                      PaymentPage(),
                                     );
                                   },
                                 ),
@@ -356,26 +344,22 @@ class _DashboardState extends State<Dashboard> {
             label: pin.label!,
             onClick: () {
               if (pin.type == "report_detail") {
-                Navigator.push(
+                navigateWithFade(
                   context,
-                  MaterialPageRoute(
-                    builder: (bc) => ReportListPage(
-                      propertyId: pin.data!['propertyId'],
-                      title: pin.data!['category'],
-                      propertyName: pin.data!['propertyName'],
-                    ),
+                  ReportListPage(
+                    propertyId: pin.data!['propertyId'],
+                    title: pin.data!['category'],
+                    propertyName: pin.data!['propertyName'],
                   ),
                 );
               }
 
               if (pin.type == "finance_income") {
-                Navigator.push(
+                navigateWithFade(
                   context,
-                  MaterialPageRoute(
-                    builder: (bc) => IncomeReportPage(
-                      propertyId: pin.data!['propertyId'],
-                      propertyName: pin.data!['propertyName'],
-                    ),
+                  IncomeReportPage(
+                    propertyId: pin.data!['propertyId'],
+                    propertyName: pin.data!['propertyName'],
                   ),
                 );
               }
@@ -395,31 +379,31 @@ class _DashboardState extends State<Dashboard> {
         Positioned(
           right: 0,
           child: RotationTransition(
-            turns: new AlwaysStoppedAnimation(15 / 360),
+            turns: const AlwaysStoppedAnimation(15 / 360),
             child: IconButton(
               onPressed: () {
                 showDialog(
                     context: context,
                     builder: (bc) {
                       return AlertDialog(
-                        content: Text("Are your sure to unpin this?"),
+                        content: const Text("Are your sure to unpin this?"),
                         actions: [
                           TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text("No")),
+                              child: const Text("No")),
                           TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
                                 onUnpin();
                               },
-                              child: Text("Yes")),
+                              child: const Text("Yes")),
                         ],
                       );
                     });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.push_pin_rounded,
                 color: Colors.amber,
                 size: 20,
@@ -455,7 +439,7 @@ class GridCard extends StatelessWidget {
     return DelayedDisplay(
       fadeIn: show,
       slidingCurve: Curves.easeInOutCubic,
-      slidingBeginOffset: Offset(0.0, 0.2),
+      slidingBeginOffset: const Offset(0.0, 0.2),
       delay: Duration(milliseconds: 30 * order + 1),
       child: GestureDetector(
         onTap: onClick,
@@ -472,13 +456,13 @@ class GridCard extends StatelessWidget {
                   : MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: direction ? 60 : 40,
+                  height: direction ? 50 : 40,
                   child: Image.asset(
                     icon,
-                    width: direction ? 60 : 40,
+                    width: direction ? 50 : 40,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
@@ -489,15 +473,15 @@ class GridCard extends StatelessWidget {
                         ? CrossAxisAlignment.center
                         : CrossAxisAlignment.start,
                     children: [
-                      heading == null
-                          ? Container()
-                          : Text(
-                              heading,
-                              style: TextStyle(
-                                fontSize: direction ? 16 : 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                      // heading == null
+                      //     ? Container()
+                      //     : Text(
+                      //         heading,
+                      //         style: TextStyle(
+                      //           fontSize: direction ? 16 : 18,
+                      //           fontWeight: FontWeight.bold,
+                      //         ),
+                      //       ),
                       Text(
                         label,
                         style: TextStyle(
@@ -517,12 +501,13 @@ class GridCard extends StatelessWidget {
 }
 
 class CustomSliverHeader extends SliverPersistentHeaderDelegate {
-  double _minExtend = AppBar().preferredSize.height;
-  double _maxExtend = 200;
-  double _maxTop = 50;
-  double _minTop = 5;
-  double _maxTopWidth = 60;
-  double _minTopWidth = 30;
+  final double _minExtend = AppBar().preferredSize.height;
+  final double _maxExtend = 200;
+  final double _maxTop = 50;
+  final double _minTop = 10;
+  final double _maxTopWidth = 50;
+  final double _maxBottomWidth = 80;
+  final double _minTopWidth = 25;
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -565,14 +550,11 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
                   child: GetX<NotificationController>(builder: (ctrl) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (bc) => NotificationsPage()));
+                        navigateWithFade(context, NotificationsPage());
                       },
                       child: Stack(
                         children: [
-                          Center(
+                          const Center(
                             child: Icon(
                               Icons.notifications,
                               color: Colors.grey,
@@ -615,7 +597,7 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
                 tag: "intro_1",
                 child: Image.asset(
                   "assets/logo_top.png",
-                  width: (_maxTopWidth * (1 - percent))
+                  width: ((_maxTopWidth) * (1 - percent))
                       .clamp(_minTopWidth, _maxTopWidth),
                 ),
               ),
@@ -623,19 +605,20 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
           ),
           Positioned(
             left: (((MediaQuery.of(context).size.width / 2) -
-                        ((_maxTopWidth - 6) / 2)) *
+                        ((_maxBottomWidth - 6) / 2)) *
                     (1 - percent))
                 .clamp(85, (MediaQuery.of(context).size.width / 2))
                 .toDouble(),
-            top: ((_maxTop + 80) * (1 - percent))
-                .clamp(_minTop + 15, _maxTop + 120),
+            top: ((_maxTop + 70) * (1 - percent))
+                .clamp(_minTop + 10, _maxTop + 120),
             child: Center(
               // color: Colors.red,
               // width: percent > 0.5 ? _minTopWidth : _minTopWidth,
               child: Image.asset(
                 "assets/logo_down.png",
                 // width: 0,
-                width: ((_maxTopWidth) * (1 - percent)).clamp(50, _maxTopWidth),
+                width: ((_maxBottomWidth) * (1 - percent))
+                    .clamp(50, _maxBottomWidth),
               ),
             ),
           ),

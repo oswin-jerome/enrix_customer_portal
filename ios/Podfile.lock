@@ -1,12 +1,12 @@
 PODS:
-  - DKImagePickerController/Core (4.3.2):
+  - DKImagePickerController/Core (4.3.4):
     - DKImagePickerController/ImageDataManager
     - DKImagePickerController/Resource
-  - DKImagePickerController/ImageDataManager (4.3.2)
-  - DKImagePickerController/PhotoGallery (4.3.2):
+  - DKImagePickerController/ImageDataManager (4.3.4)
+  - DKImagePickerController/PhotoGallery (4.3.4):
     - DKImagePickerController/Core
     - DKPhotoGallery
-  - DKImagePickerController/Resource (4.3.2)
+  - DKImagePickerController/Resource (4.3.4)
   - DKPhotoGallery (0.0.17):
     - DKPhotoGallery/Core (= 0.0.17)
     - DKPhotoGallery/Model (= 0.0.17)
@@ -33,100 +33,97 @@ PODS:
   - file_picker (0.0.1):
     - DKImagePickerController/PhotoGallery
     - Flutter
-  - Firebase/CoreOnly (8.11.0):
-    - FirebaseCore (= 8.11.0)
-  - Firebase/InAppMessaging (8.11.0):
+  - Firebase/CoreOnly (10.0.0):
+    - FirebaseCore (= 10.0.0)
+  - Firebase/InAppMessaging (10.0.0):
     - Firebase/CoreOnly
-    - FirebaseInAppMessaging (~> 8.11.0-beta)
-  - Firebase/Messaging (8.11.0):
+    - FirebaseInAppMessaging (~> 10.0.0-beta)
+  - Firebase/Messaging (10.0.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 8.11.0)
-  - firebase_core (1.13.1):
-    - Firebase/CoreOnly (= 8.11.0)
+    - FirebaseMessaging (~> 10.0.0)
+  - firebase_core (2.1.1):
+    - Firebase/CoreOnly (= 10.0.0)
     - Flutter
-  - firebase_in_app_messaging (0.6.0-9):
-    - Firebase/InAppMessaging (= 8.11.0)
+  - firebase_in_app_messaging (0.7.0-4):
+    - Firebase/InAppMessaging (= 10.0.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (11.2.11):
-    - Firebase/Messaging (= 8.11.0)
+  - firebase_messaging (14.0.4):
+    - Firebase/Messaging (= 10.0.0)
     - firebase_core
     - Flutter
-  - FirebaseABTesting (8.11.0):
-    - FirebaseCore (~> 8.0)
-  - FirebaseCore (8.11.0):
-    - FirebaseCoreDiagnostics (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.11.0):
-    - GoogleDataTransport (~> 9.1)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-    - nanopb (~> 2.30908.0)
-  - FirebaseInAppMessaging (8.11.0-beta):
-    - FirebaseABTesting (~> 8.0)
-    - FirebaseCore (~> 8.0)
-    - FirebaseInstallations (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (8.11.0):
-    - FirebaseCore (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/UserDefaults (~> 7.7)
-    - PromisesObjC (< 3.0, >= 1.2)
-  - FirebaseMessaging (8.11.0):
-    - FirebaseCore (~> 8.0)
-    - FirebaseInstallations (~> 8.0)
-    - GoogleDataTransport (~> 9.1)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Reachability (~> 7.7)
-    - GoogleUtilities/UserDefaults (~> 7.7)
-    - nanopb (~> 2.30908.0)
+  - FirebaseABTesting (10.1.0):
+    - FirebaseCore (~> 10.0)
+  - FirebaseCore (10.0.0):
+    - FirebaseCoreInternal (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreInternal (10.1.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseInAppMessaging (10.0.0-beta):
+    - FirebaseABTesting (~> 10.0)
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseInstallations (10.1.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - PromisesObjC (~> 2.1)
+  - FirebaseMessaging (10.0.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Reachability (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - Flutter (1.0.0)
-  - GoogleDataTransport (9.1.2):
-    - GoogleUtilities/Environment (~> 7.2)
-    - nanopb (~> 2.30908.0)
+  - GoogleDataTransport (9.2.0):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
+  - GoogleUtilities/AppDelegateSwizzler (7.8.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.7.0):
+  - GoogleUtilities/Environment (7.8.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.7.0):
+  - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.7.0):
+  - GoogleUtilities/Network (7.8.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.7.0)"
-  - GoogleUtilities/Reachability (7.7.0):
+  - "GoogleUtilities/NSData+zlib (7.8.0)"
+  - GoogleUtilities/Reachability (7.8.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.7.0):
+  - GoogleUtilities/UserDefaults (7.8.0):
     - GoogleUtilities/Logger
   - image_cropper (0.0.4):
     - Flutter
     - TOCropViewController (~> 2.6.1)
-  - image_picker (0.0.1):
+  - image_picker_ios (0.0.1):
     - Flutter
   - image_viewer (0.0.1):
     - Flutter
   - modal_progress_hud_nsn (0.0.1):
     - Flutter
-  - nanopb (2.30908.0):
-    - nanopb/decode (= 2.30908.0)
-    - nanopb/encode (= 2.30908.0)
-  - nanopb/decode (2.30908.0)
-  - nanopb/encode (2.30908.0)
+  - nanopb (2.30909.0):
+    - nanopb/decode (= 2.30909.0)
+    - nanopb/encode (= 2.30909.0)
+  - nanopb/decode (2.30909.0)
+  - nanopb/encode (2.30909.0)
   - open_file (0.0.1):
     - Flutter
   - path_provider_ios (0.0.1):
     - Flutter
-  - PromisesObjC (2.0.0)
-  - SDWebImage (5.12.3):
-    - SDWebImage/Core (= 5.12.3)
-  - SDWebImage/Core (5.12.3)
+  - PromisesObjC (2.1.1)
+  - SDWebImage (5.13.5):
+    - SDWebImage/Core (= 5.13.5)
+  - SDWebImage/Core (5.13.5)
   - shared_preferences_ios (0.0.1):
     - Flutter
   - SwiftyGif (5.4.3)
@@ -149,7 +146,7 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
-  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - image_viewer (from `.symlinks/plugins/image_viewer/ios`)
   - modal_progress_hud_nsn (from `.symlinks/plugins/modal_progress_hud_nsn/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
@@ -168,7 +165,7 @@ SPEC REPOS:
     - Firebase
     - FirebaseABTesting
     - FirebaseCore
-    - FirebaseCoreDiagnostics
+    - FirebaseCoreInternal
     - FirebaseInAppMessaging
     - FirebaseInstallations
     - FirebaseMessaging
@@ -193,8 +190,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
-  image_picker:
-    :path: ".symlinks/plugins/image_picker/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   image_viewer:
     :path: ".symlinks/plugins/image_viewer/ios"
   modal_progress_hud_nsn:
@@ -217,31 +214,31 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
+  DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
-  file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
-  Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
-  firebase_core: 08f6a85f62060111de5e98d6a214810d11365de9
-  firebase_in_app_messaging: 5937abf8acacbe3d35123a4c845ccf9d1669d7ed
-  firebase_messaging: 4a993bb4aa1a83349988d853c637fbb0494dab15
-  FirebaseABTesting: aac00a5472250a45f1462675792030e44df025c7
-  FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
-  FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
-  FirebaseInAppMessaging: 68586d72d5411b2dfaeb02461c2cd8d9f96a771a
-  FirebaseInstallations: 044eede8a049bce71c4541ee68d6e4364fcbe774
-  FirebaseMessaging: 02e248e8997f71fa8cc9d78e9d49ec1a701ba14a
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
-  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95
+  Firebase: 1b810f3d0c0532e27a48f1961f8c0400a668a2cf
+  firebase_core: 5c0bb0ca7d0e70480a68a6e9ad9bf55d1edd5305
+  firebase_in_app_messaging: 595c4311054fb8c9382ac28fac36c4c224c679d3
+  firebase_messaging: bf848602391fa6ee68d86e337f81be14be120aaf
+  FirebaseABTesting: 8404d743de561c73570c8dbb7810035ffec10053
+  FirebaseCore: 97f48a3a567a72b8d4daa0f03c3aadb78df4e995
+  FirebaseCoreInternal: 96d75228e10fd369564da51bd898414eb0f54df5
+  FirebaseInAppMessaging: 07aafacbb74228af034fb1c8885d25045a25d510
+  FirebaseInstallations: 99d24bac0243cf8b0e96cf5426340d211f0bcc80
+  FirebaseMessaging: 8916bf5edb1dbfac74665a181e4d1ab3a78a08a2
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
+  GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
   image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98
-  image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   image_viewer: 3ff6248139d02dd4e15d4329bb36c69f00e615e2
   modal_progress_hud_nsn: f6fb744cd060653d66ed8f325360ef3650eb2fde
-  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
-  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  SDWebImage: 23d714cd599354ee7906dbae26dff89b421c4370
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
   syncfusion_flutter_pdfviewer: bb9998884b864cfedf72628df3503bdf57e397c0
@@ -249,8 +246,8 @@ SPEC CHECKSUMS:
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
   video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
-  webview_flutter_wkwebview: 005fbd90c888a42c5690919a1527ecc6649e1162
+  webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
-PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
+PODFILE CHECKSUM: 33ed828ba6a2af6f76145c6be85902421c15c381
 
 COCOAPODS: 1.11.3

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const defaultChartValueStyle = TextStyle(
@@ -31,33 +32,53 @@ Color getColor(List<Color> colorList, int index) {
 }
 
 Future navigateWithFade(context, Widget widget) {
-  return Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (ctx, ani, secani) => widget,
-        transitionDuration: Duration(milliseconds: 200),
-        transitionsBuilder: (ctx, ani, secani, child) => Transform.scale(
-          scale: Tween(begin: 1.1, end: 1.0).transform(ani.value),
-          child: Opacity(
-            opacity: Tween(begin: 0.0, end: 1.0).transform(ani.value),
-            child: child,
-          ),
-        ),
-      ));
+  return Navigator.push(context, CupertinoPageRoute(builder: (c) => widget));
+  // return Navigator.push(
+  //   context,
+  //   // MaterialPageRoute(builder: (c) => widget)
+  //   // PageRouteBuilder(
+  //   //   pageBuilder: (ctx, ani, secani) => widget,
+  //   //   transitionDuration: Duration(milliseconds: 200),
+  //   //   transitionsBuilder: (ctx, ani, secani, child) => Transform.translate(
+  //   //     // scale: Tween(begin: 0.5, end: 1.0).transform(ani.value),
+  //   //     offset: Tween(
+  //   //             begin: Offset(MediaQuery.of(context).size.width, 0),
+  //   //             end: Offset(0, 0))
+  //   //         .transform(ani.value),
+  //   //     child: Opacity(
+  //   //       opacity: 1,
+  //   //       child: child,
+  //   //     ),
+  //   //   ),
+  //   // ),
+  //   PageRouteBuilder(
+  //     pageBuilder: (ctx, ani, secani) => widget,
+  //     transitionDuration: Duration(milliseconds: 200),
+  //     transitionsBuilder: (ctx, ani, secani, child) => SlideTransition(
+  //       position:
+  //           Tween(begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0)).animate(ani),
+  //       child: child,
+  //     ),
+  //   ),
+  // );
 }
 
 Future navigateWithFadeReplace(context, Widget widget) {
   return Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (ctx, ani, secani) => widget,
-        transitionDuration: Duration(milliseconds: 200),
-        transitionsBuilder: (ctx, ani, secani, child) => Transform.scale(
-          scale: Tween(begin: 1.1, end: 1.0).transform(ani.value),
-          child: Opacity(
-            opacity: Tween(begin: 0.0, end: 1.0).transform(ani.value),
-            child: child,
-          ),
-        ),
-      ));
+      context, CupertinoPageRoute(builder: (c) => widget));
+
+  return Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (c) => widget)
+      // PageRouteBuilder(
+      //   pageBuilder: (ctx, ani, secani) => widget,
+      //   transitionDuration: Duration(milliseconds: 200),
+      //   transitionsBuilder: (ctx, ani, secani, child) => Transform.scale(
+      //     scale: Tween(begin: 1.1, end: 1.0).transform(ani.value),
+      //     child: Opacity(
+      //       opacity: Tween(begin: 0.0, end: 1.0).transform(ani.value),
+      //       child: child,
+      //     ),
+      //   ),
+      // ),
+      );
 }

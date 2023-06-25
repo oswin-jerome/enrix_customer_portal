@@ -48,6 +48,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.grey,
           fontFamily: GoogleFonts.raleway().fontFamily,
+          inputDecorationTheme: InputDecorationTheme(
+              labelStyle:
+                  TextStyle(fontFamily: GoogleFonts.openSans().fontFamily),
+              hintStyle:
+                  TextStyle(fontFamily: GoogleFonts.openSans().fontFamily)),
         ),
         navigatorObservers: [],
         home: SplashScreen(),

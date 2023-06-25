@@ -11,14 +11,9 @@ import 'package:customer_portal/pages/finance/fragments/financeFragment.dart';
 import 'package:customer_portal/utils/tools.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:select_form_field/select_form_field.dart';
-
-import '../dashboard.dart';
 
 class FinanceReportPage extends StatefulWidget {
   int? propertyId;
@@ -59,16 +54,16 @@ class _FinanceReportPageState extends State<FinanceReportPage>
     controller.getData(
         dataToLoad: _filterPeriod,
         type: "Income",
-        propertyID: widget.propertyId ?? null);
+        propertyID: widget.propertyId);
 
     controller.getData(
         dataToLoad: _filterPeriod,
         type: "Expense",
-        propertyID: widget.propertyId ?? null);
+        propertyID: widget.propertyId);
     controller.getData(
         dataToLoad: _filterPeriod,
         type: "Withdrawals",
-        propertyID: widget.propertyId ?? null);
+        propertyID: widget.propertyId);
 
     controller.getBarData();
   }
@@ -117,7 +112,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
             ),
             child: StatefulBuilder(
               builder: (bc, setState) => ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
                 ),
@@ -137,15 +132,14 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  ExportController ctrl =
-                                      new ExportController();
+                                  ExportController ctrl = ExportController();
                                   ctrl.exportCSV(
                                     exportableCategories: _selectedCategories,
                                     finance: _finances,
                                     selectedTypes: _selectedTypes,
                                   );
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Export",
                                   style: TextStyle(fontSize: 12),
                                 ),
@@ -153,8 +147,8 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15),
                           child: Text(
                             "Types: ",
                             style: TextStyle(
@@ -163,13 +157,13 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                           ),
                         ),
                         ListView(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           children: [
                             ListTile(
                               dense: true,
-                              contentPadding: EdgeInsets.all(0),
-                              title: Text("Income"),
+                              contentPadding: const EdgeInsets.all(0),
+                              title: const Text("Income"),
                               leading: Checkbox(
                                 value: _selectedTypes.contains(0),
                                 onChanged: (b) {
@@ -185,8 +179,8 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                             ),
                             ListTile(
                               dense: true,
-                              contentPadding: EdgeInsets.all(0),
-                              title: Text("Expense"),
+                              contentPadding: const EdgeInsets.all(0),
+                              title: const Text("Expense"),
                               leading: Checkbox(
                                 value: _selectedTypes.contains(1),
                                 onChanged: (b) {
@@ -202,8 +196,8 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                             ),
                             ListTile(
                               dense: true,
-                              contentPadding: EdgeInsets.all(0),
-                              title: Text("Others"),
+                              contentPadding: const EdgeInsets.all(0),
+                              title: const Text("Others"),
                               leading: Checkbox(
                                 value: _selectedTypes.contains(2),
                                 onChanged: (b) {
@@ -219,8 +213,8 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15),
                           child: Text(
                             "Categories: ",
                             style: TextStyle(
@@ -229,13 +223,13 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                           ),
                         ),
                         ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: categories.length,
                           itemBuilder: (bc, i) {
                             return ListTile(
                               dense: true,
-                              contentPadding: EdgeInsets.all(0),
+                              contentPadding: const EdgeInsets.all(0),
                               horizontalTitleGap: 0.0,
                               leading: Checkbox(
                                 value: !_selectedCategories
@@ -278,7 +272,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
         // floatingActionButton: CustomFab(),
         floatingActionButton: CustomFab(
             label: "Filter",
-            icon: Icon(
+            icon: const Icon(
               Icons.filter_list_rounded,
               color: Colors.white,
             ),
@@ -296,7 +290,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                     padding: const EdgeInsets.symmetric(horizontal: 3),
                     child: StatefulBuilder(
                       builder: (bc, setState) => ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(15),
                           topRight: Radius.circular(15),
                         ),
@@ -323,7 +317,8 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                                           builder: (bc) {
                                             return Dialog(
                                               child: Container(
-                                                padding: EdgeInsets.all(15),
+                                                padding:
+                                                    const EdgeInsets.all(15),
                                                 child: AspectRatio(
                                                   aspectRatio: 1 / 0.8,
                                                   child: Column(
@@ -373,7 +368,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                                                                 ElevatedButton(
                                                                     style: ElevatedButton
                                                                         .styleFrom(
-                                                                      primary:
+                                                                      backgroundColor:
                                                                           accent,
                                                                     ),
                                                                     onPressed:
@@ -413,7 +408,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                                                                       Navigator.pop(
                                                                           context);
                                                                     },
-                                                                    child: Text(
+                                                                    child: const Text(
                                                                         "Filter")),
                                                           ),
                                                         ),
@@ -471,10 +466,10 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: Text("Filter")),
+                                        child: const Text("Filter")),
                                   ),
                                 ),
-                                ListTile(
+                                const ListTile(
                                   dense: true,
                                   title: Text("Export"),
                                 ),
@@ -486,8 +481,8 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                                     Navigator.pop(context);
                                     _showExportPanel();
                                   },
-                                  title: Text("Export CSV"),
-                                  leading: Icon(Icons.table_view_rounded),
+                                  title: const Text("Export CSV"),
+                                  leading: const Icon(Icons.table_view_rounded),
                                 ),
                                 // ListTile(
                                 //   title: Text("Export PDF"),
@@ -514,7 +509,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
             text: TextSpan(
               style: TextStyle(fontFamily: GoogleFonts.raleway().fontFamily),
               children: [
-                TextSpan(
+                const TextSpan(
                   text: "Finances",
                   style: TextStyle(
                     color: Colors.black,
@@ -533,11 +528,11 @@ class _FinanceReportPageState extends State<FinanceReportPage>
             ),
           ),
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(50),
+            preferredSize: const Size.fromHeight(50),
             child: Transform.scale(
               scale: 0.8,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 3),
                 width: MediaQuery.of(context).size.width - 80,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -545,7 +540,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                 ),
                 child: MyTabBar(
                   tabController: _tabController,
-                  tabs: [
+                  tabs: const [
                     Tab(
                       // text: "Income",
 
@@ -590,7 +585,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   );
                 }
                 return FinanceFragment(
-                  propertyId: widget.propertyId ?? null,
+                  propertyId: widget.propertyId,
                   propertyName: widget.propertyName,
                   finance: finance,
                   type: "Income",
@@ -598,7 +593,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   period: _filterPeriod,
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Text("Error"),
                 );
               }
@@ -625,7 +620,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   );
                 }
                 return FinanceFragment(
-                  propertyId: widget.propertyId ?? null,
+                  propertyId: widget.propertyId,
                   propertyName: widget.propertyName,
                   finance: finance,
                   type: "Expense",
@@ -633,7 +628,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   period: _filterPeriod,
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Text("Error"),
                 );
               }
@@ -660,7 +655,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   );
                 }
                 return FinanceFragment(
-                  propertyId: widget.propertyId ?? null,
+                  propertyId: widget.propertyId,
                   propertyName: widget.propertyName,
                   finance: finance,
                   type: "Others",
@@ -668,7 +663,7 @@ class _FinanceReportPageState extends State<FinanceReportPage>
                   period: _filterPeriod,
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Text("Error"),
                 );
               }
@@ -742,11 +737,11 @@ class _IncomePageState extends State<IncomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 15),
+            margin: const EdgeInsets.symmetric(horizontal: 15),
             // padding: EdgeInsets.all(16),
 
             child: Material(
@@ -760,7 +755,7 @@ class _IncomePageState extends State<IncomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text(
                           "Outstanding balance",
                           style: TextStyle(
@@ -786,7 +781,7 @@ class _IncomePageState extends State<IncomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text(
                           "Income",
                           style: TextStyle(
@@ -810,11 +805,11 @@ class _IncomePageState extends State<IncomePage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
               horizontal: 50,
             ),
             child: AspectRatio(
@@ -855,11 +850,11 @@ class _IncomePageState extends State<IncomePage> {
                   // centerSpaceRadius: 10,
                 ),
                 swapAnimationCurve: Curves.elasticInOut,
-                swapAnimationDuration: Duration(milliseconds: 300),
+                swapAnimationDuration: const Duration(milliseconds: 300),
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -880,18 +875,18 @@ class _IncomePageState extends State<IncomePage> {
               ),
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 2,
           ),
           ListView.separated(
             separatorBuilder: (bx, i) {
-              return Divider();
+              return const Divider();
             },
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 10,
             itemBuilder: (bc, i) {
-              return ListTile(
+              return const ListTile(
                 isThreeLine: false,
                 title: Text("Hello"),
                 subtitle: Text("12 Aug 2021"),

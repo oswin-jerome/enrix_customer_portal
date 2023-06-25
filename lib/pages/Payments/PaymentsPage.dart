@@ -12,6 +12,7 @@ import 'package:customer_portal/utils/ApiHelper.dart';
 import 'package:customer_portal/utils/Base.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -163,8 +164,16 @@ class _PaymentPageState extends State<PaymentPage>
                     ),
                     trailing: ElevatedButton(
                       onPressed: () async {
-                        if (await canLaunch(e.url!)) {
-                          launch(e.url!);
+                        print(e.url);
+                        if (await canLaunchUrl(Uri.parse(e.url ?? ""))) {
+                          launchUrl(Uri.parse(e.url ?? ""));
+                        } else {
+                          Get.showSnackbar(
+                            GetSnackBar(
+                              title: "Unable to launch payment",
+                              messageText: Text(""),
+                            ),
+                          );
                         }
                       },
                       child: Text("Rs. " + e.amount.toString()),

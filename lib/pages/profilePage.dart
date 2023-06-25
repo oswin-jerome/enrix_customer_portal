@@ -321,7 +321,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 "Time Zone",
                                 style: headingStyle,
                               ),
-                              subtitle: Text(_customer!.timeOfContact!),
+                              subtitle: Text(_customer!.timeOfContact ?? ""),
                               trailing: IconButton(
                                   icon: Icon(Icons.edit),
                                   onPressed: () {
@@ -335,13 +335,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                 "Preferred Communication Mode",
                                 style: headingStyle,
                               ),
-                              subtitle: Text(_customer!.modeOfContact!),
+                              subtitle: Text(_customer!.modeOfContact ?? "-"),
                               trailing: IconButton(
                                   icon: Icon(Icons.edit),
                                   onPressed: () {
                                     _preferedModeOfContactsPopup(
                                         "mode_of_contact",
-                                        _customer!.modeOfContact!);
+                                        _customer!.modeOfContact ?? "-");
                                   }),
                             ),
                             SizedBox(

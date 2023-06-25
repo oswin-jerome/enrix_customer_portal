@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:customer_portal/Models/ActivityLogGroup.dart';
+import 'package:customer_portal/others/pie_chart.dart';
 import 'package:customer_portal/pages/activity/ActivityImageViewer.dart';
-import 'package:customer_portal/utils/Base.dart';
+import 'package:customer_portal/utils/Base.dart' as base;
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
@@ -29,13 +30,13 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                     margin: EdgeInsets.only(left: 5),
                     padding: EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      color: getColor("priority").withOpacity(0.2),
+                      color: base.getColor("priority").withOpacity(0.2),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
                       "Priority",
-                      style:
-                          TextStyle(fontSize: 12, color: getColor("priority")),
+                      style: TextStyle(
+                          fontSize: 12, color: base.getColor("priority")),
                     ),
                   ),
                 ],
@@ -88,21 +89,19 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                   itemBuilder: (bx, i) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (bc) => ActivityImageViewer(
-                                url: Base.baseUrlWithoutApi +
-                                    "activity_images/${jsonDecode(widget.activityLog.imageFiles!)[i]}",
-                              ),
-                              fullscreenDialog: true,
-                            ));
+                        navigateWithFade(
+                          context,
+                          ActivityImageViewer(
+                            url: base.Base.baseUrlWithoutApi +
+                                "activity_images/${jsonDecode(widget.activityLog.imageFiles!)[i]}",
+                          ),
+                        );
                       },
                       child: Hero(
-                        tag: Base.baseUrlWithoutApi +
+                        tag: base.Base.baseUrlWithoutApi +
                             "activity_images/${jsonDecode(widget.activityLog.imageFiles!)[i]}",
                         child: Image.network(
-                          Base.baseUrlWithoutApi +
+                          base.Base.baseUrlWithoutApi +
                               "activity_images/${jsonDecode(widget.activityLog.imageFiles!)[i]}",
                           headers: {"Keep-Alive": "Keep-Alive"},
                           fit: BoxFit.cover,

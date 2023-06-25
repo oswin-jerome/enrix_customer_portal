@@ -1,3 +1,4 @@
+import 'package:customer_portal/others/pie_chart.dart';
 import 'package:customer_portal/pages/auth/loginPage.dart';
 import 'package:customer_portal/utils/Base.dart';
 import 'package:flutter/material.dart';
@@ -98,11 +99,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.pushReplacement(
+                navigateWithFadeReplace(
                   context,
-                  MaterialPageRoute(
-                    builder: (bc) => LoginPage(),
-                  ),
+                  LoginPage(),
                 );
                 // _testPerc.change(100);
               },
@@ -243,11 +242,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                           //print(_introController.page);
                           //print(_intros.length);
                           if (_introController.page == _intros.length - 1.0) {
-                            Navigator.pushReplacement(
+                            navigateWithFadeReplace(
                               context,
-                              MaterialPageRoute(
-                                builder: (bc) => LoginPage(),
-                              ),
+                              LoginPage(),
                             );
                           }
                           // controller.repeat(

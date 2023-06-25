@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cool_stepper/cool_stepper.dart';
+import 'package:customer_portal/others/pie_chart.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:dio/dio.dart';
 import 'package:customer_portal/components/customLoader.dart';
@@ -69,19 +70,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
             title: "Registered Successfully",
             text:
                 "Your Account will be verified & activated in the next 48 hrs.",
-            // subtitleTextAlign: TextAlign.center,
             dialogAlignment: Alignment.center,
             confirmButtonColor: Colors.grey,
-            // titleStyle: TextStyle(fontSize: 16),
-
-            // style: SweetAlertV2Style.success,
-
             onConfirm: () {
-              Navigator.pushReplacement(
+              navigateWithFadeReplace(
                 context,
-                MaterialPageRoute(
-                  builder: (builder) => LoginPage(),
-                ),
+                LoginPage(),
               );
               return;
             },
@@ -131,14 +125,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
         _isLoading = false;
       });
       if (value.statusCode == 200) {
-        // Future.delayed(Duration(seconds: 3)).then((value) {
-        //   Navigator.pushReplacement(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (builder) => LoginPage(),
-        //     ),
-        //   );
-        // });
         _notifyUser();
       }
     }).catchError((e) {
@@ -265,8 +251,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             if (val!.isEmpty) {
                               return "Field can't be empty";
                             }
-                            if (val.length < 7) {
-                              return "Minimum 8 characters required";
+                            if (val.length < 6) {
+                              return "Minimum 6 characters required";
                             }
 
                             if (val != _password) {
@@ -279,8 +265,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             _confirmPassword = val!;
                           },
                           obscureText: true,
-                          decoration:
-                              InputDecoration(labelText: "Confirm Password"),
+                          decoration: const InputDecoration(
+                            labelText: "Confirm Password",
+                          ),
                         ),
                         TextFormField(
                           initialValue: _name,
@@ -294,7 +281,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           onSaved: (val) {
                             _name = val!;
                           },
-                          decoration: InputDecoration(labelText: "Client Name"),
+                          decoration:
+                              const InputDecoration(labelText: "Client Name"),
                         ),
                         DateTimePicker(
                           type: DateTimePickerType.date,
@@ -318,7 +306,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         IntlPhoneField(
                           initialValue: _phone,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             label: Text("Phone"),
                           ),
                           validator: (val) {
@@ -384,8 +372,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           onSaved: (val) {
                             _currentAddress = val!;
                           },
-                          decoration:
-                              InputDecoration(labelText: "Current Address"),
+                          decoration: const InputDecoration(
+                              labelText: "Current Address"),
                         ),
                         TextFormField(
                           initialValue: _city,
@@ -399,7 +387,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           onSaved: (val) {
                             _city = val!;
                           },
-                          decoration: InputDecoration(labelText: "City"),
+                          decoration: const InputDecoration(labelText: "City"),
                         ),
                         TextFormField(
                           initialValue: _state,
@@ -413,7 +401,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           onSaved: (val) {
                             _state = val!;
                           },
-                          decoration: InputDecoration(labelText: "State"),
+                          decoration: const InputDecoration(labelText: "State"),
                         ),
                         TextFormField(
                           initialValue: _zipcode,
@@ -431,7 +419,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           onSaved: (val) {
                             _zipcode = val!;
                           },
-                          decoration: InputDecoration(labelText: "Zip Code"),
+                          decoration:
+                              const InputDecoration(labelText: "Zip Code"),
                         )
                       ],
                     ),

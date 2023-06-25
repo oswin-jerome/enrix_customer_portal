@@ -82,10 +82,22 @@ class _AppDrawerState extends State<AppDrawer> {
                                 ),
                                 Text(
                                   controller.customer.value.name ?? "",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
                                 ),
+                                controller.customer.value.status
+                                    ? const SizedBox()
+                                    : const SizedBox(
+                                        height: 8,
+                                      ),
+                                controller.customer.value.status
+                                    ? const SizedBox()
+                                    : ElevatedButton(
+                                        onPressed: () {},
+                                        child:
+                                            const Text("Complete your profile"),
+                                      )
                               ],
                             ),
                             // Text(

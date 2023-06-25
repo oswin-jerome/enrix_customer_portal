@@ -1,5 +1,7 @@
+import 'package:customer_portal/others/src/utils.dart';
 import 'package:customer_portal/pages/extras/onBoardingScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:rive/rive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,21 +17,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3)).then((value) async {
-      SharedPreferences _pref = await SharedPreferences.getInstance();
-      if (_pref.getString("token") != null) {
-        Navigator.pushReplacement(
+    Future.delayed(const Duration(seconds: 3)).then((value) async {
+      var storeBox = Hive.box("store");
+
+      String? _token = storeBox.get("token");
+      if (_token != null) {
+        navigateWithFadeReplace(
           context,
-          MaterialPageRoute(
-            builder: (c) => Dashboard(),
-          ),
+          Dashboard(),
         );
       } else {
-        Navigator.pushReplacement(
+        navigateWithFadeReplace(
           context,
-          MaterialPageRoute(
-            builder: (bc) => OnBoardingScreen(),
-          ),
+          OnBoardingScreen(),
         );
       }
     });
@@ -78,7 +78,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   Container(
                     height: 50,
                     child: RiveAnimation.asset(
-                      "assets/rive/enrix_logo.riv",
+                      "assets/ani.riv",
                       fit: BoxFit.contain,
                       onInit: (a) {
                         Future.delayed(Duration(seconds: 1)).then((value) {
@@ -88,9 +88,12 @@ class _SplashScreenState extends State<SplashScreen> {
                         });
                       },
                       controllers: [
-                        SpeedController("ani1", speedMultiplier: 1.5),
+                        SpeedController("ani1", speedMultiplier: 0.5),
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
                   ),
                   AnimatedOpacity(
                     opacity: _opcty,

@@ -8,7 +8,7 @@ class CustomLoader extends StatelessWidget {
     return Blur(
       blur: 1,
       blurColor: Colors.white,
-      colorOpacity: 00.6,
+      colorOpacity: 1,
       child: Container(),
       overlay: Container(
         height: 55,
@@ -16,7 +16,7 @@ class CustomLoader extends StatelessWidget {
           "assets/ani.riv",
           fit: BoxFit.contain,
           controllers: [
-            SpeedController("ani1", speedMultiplier: 1.5),
+            SpeedController("ani1", speedMultiplier: 0.5),
           ],
         ),
       ),

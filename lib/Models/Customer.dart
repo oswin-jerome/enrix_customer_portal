@@ -1,22 +1,24 @@
 class Customer {
-  Customer(
-      {this.id,
-      this.createdAt,
-      this.updatedAt,
-      this.name,
-      this.dob,
-      this.email,
-      this.mobile,
-      this.phone,
-      this.currentAddress,
-      this.city,
-      this.state,
-      this.zipcode,
-      this.timeOfContact,
-      this.modeOfContact,
-      this.idProof,
-      this.profileImage,
-      this.customerId});
+  Customer({
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.name,
+    this.dob,
+    this.email,
+    this.mobile,
+    this.phone,
+    this.currentAddress,
+    this.city,
+    this.state,
+    this.zipcode,
+    this.timeOfContact,
+    this.modeOfContact,
+    this.idProof,
+    this.profileImage,
+    this.customerId,
+    this.status = false,
+  });
 
   factory Customer.fromJson(Map<String, dynamic> json) => Customer(
         city: json['city'],
@@ -35,6 +37,7 @@ class Customer {
         zipcode: json['zipcode'],
         profileImage: json['profile_image'],
         customerId: json['unique_id'],
+        status: json['status'] == 1,
       );
 
   int? id;
@@ -54,4 +57,5 @@ class Customer {
   String? idProof;
   String? profileImage;
   String? customerId;
+  bool status = false;
 }

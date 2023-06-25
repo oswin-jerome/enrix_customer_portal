@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:customer_portal/others/pie_chart.dart';
 import 'package:dio/dio.dart';
 import 'package:customer_portal/Models/Document.dart';
 import 'package:customer_portal/components/customLoader.dart';
@@ -159,15 +160,12 @@ class _ReportCategoryPageState extends State<ReportCategoryPage>
                   itemBuilder: (bc, i) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.push(
+                        navigateWithFade(
                           context,
-                          MaterialPageRoute(
-                            builder: (v) => ReportListPage(
-                              title: reports[i],
-                              propertyId: propertyId,
-                              propertyName: propertyName,
-                            ),
-                            fullscreenDialog: true,
+                          ReportListPage(
+                            title: reports[i],
+                            propertyId: propertyId,
+                            propertyName: propertyName,
                           ),
                         );
                       },
